@@ -7,7 +7,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://careconnect-77da.onrender.com',
+        target: 'https://careconnect-77da.onrender.c',
         changeOrigin: true,
       },
     },
