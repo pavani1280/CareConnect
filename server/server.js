@@ -15,7 +15,10 @@ connectDB();
 
 // Security Middlewares
 app.use(helmet());
-app.use(cors({ origin: '*', credentials: true }));
+app.use(cors({
+  origin: 'https://care-connect-erti.vercel.app',
+  credentials: true,
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
