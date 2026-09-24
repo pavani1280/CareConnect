@@ -15,8 +15,20 @@ connectDB();
 
 // Security Middlewares
 app.use(helmet());
+const allowedOrigins = new Set([
+  'https://care-connect-erti.vercel.app',
+  'https://care-connect-six-zeta.vercel.app',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+]);
 app.use(cors({
-  origin: 'https://care-connect-erti.vercel.app',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.has(origin)) {
+      callback(null, true);
+      return;
+    }
+    callback(new Error('Origin is not allowed by CORS'));
+  },
   credentials: true,
 }));
 app.use(express.json({ limit: '10mb' }));
